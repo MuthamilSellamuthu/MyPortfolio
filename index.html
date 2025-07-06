@@ -201,9 +201,10 @@
     <h2 class="section-title text-center text-white mb-5">
       <i class="fas fa-project-diagram text-warning"></i> My <span class="text-info">Projects</span>
     </h2>
+
     <div class="row g-4 justify-content-center">
 
-
+      <!-- Project 1 -->
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="card project-card h-100 shadow bg-dark bg-opacity-75 text-white">
           <div class="project-img-box">
@@ -219,6 +220,7 @@
         </div>
       </div>
 
+      <!-- Project 2 -->
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="card project-card h-100 shadow bg-dark bg-opacity-75 text-white">
           <div class="project-img-box">
@@ -227,14 +229,14 @@
           <div class="card-body d-flex flex-column">
             <h5 class="card-title fw-bold">Alumnnex</h5>
             <p class="card-text flex-grow-1">Flutter app to connect students and alumni with many features.</p>
-            <a href="https://github.com/MuthamilSellamuthu/Alumnnex" target="_blank" class="btn btn-outline-info mt-3">
+            <a href="https://github.com/yourusername/project-repo" target="_blank" class="btn btn-outline-info mt-3">
               <i class="fab fa-github me-1"></i> View on GitHub
             </a>
           </div>
         </div>
       </div>
 
-
+      <!-- Project 3 -->
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="card project-card h-100 shadow bg-dark bg-opacity-75 text-white">
           <div class="project-img-box">
@@ -249,9 +251,43 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
+      <!-- Project 4: Weather App -->
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card project-card h-100 shadow bg-dark bg-opacity-75 text-white">
+          <div class="project-img-box">
+            <img src="./images/Weather.jpg" class="card-img-top img-fluid" alt="Weather Image">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold">Weather App</h5>
+            <p class="card-text flex-grow-1">A responsive weather app showing real-time conditions, air quality, and a 5-day forecast.</p>
+            <a href="https://github.com/MuthamilSellamuthu/WeatherApp" target="_blank" class="btn btn-outline-info mt-3">
+              <i class="fab fa-github me-1"></i> View on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5: To-Do List App -->
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card project-card h-100 shadow bg-dark bg-opacity-75 text-white">
+          <div class="project-img-box">
+            <img src="images/to-Do-list.jpg" class="card-img-top img-fluid" alt="To-Do List Image">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold">To-Do List App</h5>
+            <p class="card-text flex-grow-1">A simple and organized To-Do List app to manage daily tasks with ease.</p>
+            <a href="https://github.com/MuthamilSellamuthu/Java-Miniproject" target="_blank" class="btn btn-outline-info mt-3">
+              <i class="fab fa-github me-1"></i> View on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- end .row -->
+  </div> <!-- end .container -->
 </section>
+
 
 
 
@@ -401,6 +437,7 @@
 
     </div>
   </div>
+
 </section>
 
 <!-- Success Message Script -->
@@ -426,6 +463,44 @@
     }
   });
 </script>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const response = document.getElementById('form-response');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const data = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      message: document.getElementById('message').value
+    };
+
+    try {
+      const res = await fetch('http://localhost:3000/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      if (result.success) {
+        response.innerText = `Thank you, ${data.name}! I will contact you soon!`;
+        response.style.display = 'block';
+        form.reset();
+      } else {
+        response.innerText = 'Failed to send message. Try again.';
+        response.style.display = 'block';
+      }
+    } catch (error) {
+      console.error(error);
+      response.innerText = 'An error occurred.';
+      response.style.display = 'block';
+    }
+  });
+</script>
+
 
 
   <!-- Footer -->
